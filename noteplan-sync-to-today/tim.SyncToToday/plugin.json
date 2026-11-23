@@ -1,0 +1,47 @@
+{
+  "noteplan.minAppVersion": "3.9.2",
+  "macOS.minVersion": "10.13.0",
+  "plugin.id": "tim.SyncToToday",
+  "plugin.name": "Sync to Today",
+  "plugin.description": "Type /st on a task to instantly put a synced copy of it in today's note. Use the plugin settings to determine where this action goes by default. Synced tasks are bidirectionally updated, meaning if it's marked done today it's also marked done in where you synced it from.\n\nTo set up a keyboard shortcut, go to Settings > Keyboard and click \"Keyboard Shortcuts...\". Go to \"App shortcuts\", click the + and select Noteplan.  In the menu title field type \"/sync to today\" and choose your keyboard shortcut.",
+  "plugin.author": "Claude (for Tim)",
+  "plugin.version": "1.3.0",
+  "plugin.script": "script.js",
+  "plugin.commands": [
+    {
+      "name": "sync to today",
+      "alias": [
+        "st"
+      ],
+      "description": "Add a synced copy of the current task to today's note",
+      "jsFunction": "syncToToday"
+    }
+  ],
+  "plugin.settings": [
+    {
+      "type": "heading",
+      "title": "Sync to Today"
+    },
+    {
+      "key": "position",
+      "type": "string",
+      "title": "Where to put the copy",
+      "description": "Top and Bottom are the start and end of today's note. Under heading and Above heading place it next to the heading named below.",
+      "choices": [
+        "Top",
+        "Bottom",
+        "Under heading",
+        "Above heading"
+      ],
+      "default": "Top",
+      "required": true
+    },
+    {
+      "key": "heading",
+      "type": "string",
+      "title": "Heading name",
+      "description": "Only used when the choice above is Under heading or Above heading; ignored otherwise. Not case sensitive. If it's missing from today's note, Above heading falls back to the bottom and Under heading creates it at the bottom.",
+      "default": "Done"
+    }
+  ]
+}
